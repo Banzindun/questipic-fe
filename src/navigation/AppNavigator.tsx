@@ -1,8 +1,11 @@
 import React from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { COLORS } from '../constants/theme';
+import { AuthProvider, useAuth } from '../context/AuthContext';
 import FeedScreen from '../screens/FeedScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 export type RootStackParamList = {
   Feed: undefined;
@@ -15,7 +18,21 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function AppNavigator() {
+function Navigator() {
+  const { token, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, backgroundColor: COLORS.bg.app, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator color={COLORS.accent} size="large" />
+      </View>
+    );
+  }
+
+  if (!token) {
+    return <LoginScreen />;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -28,5 +45,13 @@ export default function AppNavigator() {
         <Stack.Screen name="Feed" component={FeedScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+export default function AppNavigator() {
+  return (
+    <AuthProvider>
+      <Navigator />
+    </AuthProvider>
   );
 }

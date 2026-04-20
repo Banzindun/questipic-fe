@@ -42,7 +42,5 @@ export const SPACING = {
   xxl: 18,
 } as const;
 
-// API configuration
-export const API_URL = __DEV__
-  ? 'http://localhost:3000/api'
-  : 'https://your-production-url.com/api';
+// API configuration — set EXPO_PUBLIC_API_URL in .env.development / .env.production
+export const API_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:3001';

@@ -29,3 +29,21 @@ export interface Player {
   unread: number;
   fame: number;
 }
+
+export interface User {
+  googleId?: string;
+  email?: string;
+  id?: string;
+  token: string;
+  name: string;
+  profilePicture: string | null;
+  avatar: number;
+  createdAt: Date;
+  coins: number;
+  level: number;
+  xp: number;
+  qcoins: number;
+  unread: number;
+  fame: number;
+  stats: number[];
+}

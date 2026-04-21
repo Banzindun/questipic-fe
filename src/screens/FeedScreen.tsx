@@ -1,8 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../constants/theme';
-import { QUESTS, PLAYER } from '../api/mockData';
+import { QUESTS } from '../api/mockData';
+import { useUser } from '../context/UserContext';
 import Header from '../components/Header';
 import FilterStrip from '../components/FilterStrip';
 import SectionHeader from '../components/SectionHeader';
@@ -11,6 +12,7 @@ import BottomNav from '../components/BottomNav';
 import ActiveQuestsPill from '../components/ActiveQuestsPill';
 
 export default function FeedScreen() {
+  const { user } = useUser();
   const [filter, setFilter] = useState(0);
   const scrollRef = useRef<ScrollView>(null);
   const activeY = useRef(0);
@@ -27,7 +29,7 @@ export default function FeedScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <View style={styles.container}>
-        <Header player={PLAYER} />
+        {user && <Header player={user} />}
         <FilterStrip selected={filter} onSelect={setFilter} />
 
         <View style={{ flex: 1, position: 'relative' }}>

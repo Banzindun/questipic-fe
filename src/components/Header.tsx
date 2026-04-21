@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { COLORS } from '../constants/theme';
-import { Player } from '../constants/types';
+import { User } from '../constants/types';
 import { BellIcon, CoinIcon } from './Icons';
 import { fmt } from '../api/mockData';
 
 interface Props {
-  player: Player;
+  player: User;
 }
 
 export default function Header({ player }: Props) {

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { COLORS } from '../constants/theme';
 import { AuthProvider, useAuth } from '../context/AuthContext';
+import { UserProvider } from '../context/UserContext';
 import FeedScreen from '../screens/FeedScreen';
 import LoginScreen from '../screens/LoginScreen';
 
@@ -51,7 +52,9 @@ function Navigator() {
 export default function AppNavigator() {
   return (
     <AuthProvider>
-      <Navigator />
+      <UserProvider>
+        <Navigator />
+      </UserProvider>
     </AuthProvider>
   );
 }

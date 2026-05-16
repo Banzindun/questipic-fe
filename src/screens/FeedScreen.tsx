@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from '../constants/theme';
-import { QUESTS } from '../api/mockData';
+import api from '../api/client';
+import { Quest } from '../constants/types';
 import { useUser } from '../context/UserContext';
 import Header from '../components/Header';
 import SectionHeader from '../components/SectionHeader';
@@ -13,11 +14,20 @@ import ActiveQuestsPill from '../components/ActiveQuestsPill';
 export default function FeedScreen() {
   const { user } = useUser();
   const [filter, setFilter] = useState(0);
+  const [quests, setQuests] = useState<Quest[]>([]);
   const scrollRef = useRef<ScrollView>(null);
   const activeY = useRef(0);
 
-  const offers = QUESTS.filter((q) => !q.joined);
-  const active = QUESTS.filter((q) => q.joined);
+  useEffect(() => {
+    api.getQuests().then((data) => {
+      console.log('[getQuests] raw response:', JSON.stringify(data));
+      const list = Array.isArray(data) ? data : (data as { result?: Quest[]; quests?: Quest[]; data?: Quest[] }).result ?? (data as { quests?: Quest[] }).quests ?? (data as { data?: Quest[] }).data ?? [];
+      setQuests(list);
+    }).catch((e) => console.error('[getQuests] error:', e));
+  }, []);
+
+  const offers = quests.filter((q) => !q.joined);
+  const active = quests.filter((q) => q.joined);
   const dailyOffers = offers.slice(0, 3);
 
   const scrollToActive = () => {

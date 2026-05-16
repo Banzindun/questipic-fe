@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { COLORS } from '../constants/theme';
 import { User } from '../constants/types';
 import { BellIcon, CoinIcon } from './Icons';
-import { fmt } from '../api/mockData';
+import { fmt } from '../utils';
 
 interface Props {
   player: User;

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS } from '../constants/theme';
 import { Quest } from '../constants/types';
-import { fmt } from '../api/mockData';
+import { fmt } from '../utils';
 import { UsersIcon, ClockIcon, CoinIcon, RuneCorner } from './Icons';
 import Lives from './Lives';
 

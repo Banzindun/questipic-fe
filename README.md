@@ -21,7 +21,6 @@ src/
 ├── components/
 │   ├── ActiveQuestsPill.tsx    # Floating "jump to active" pill
 │   ├── BottomNav.tsx           # 5-tab nav with glowing center button
-│   ├── FilterStrip.tsx         # Horizontal chip filters
 │   ├── Header.tsx              # Avatar, coins, bell
 │   ├── Icons.tsx               # SVG stroke icons
 │   ├── Lives.tsx               # Heart pips

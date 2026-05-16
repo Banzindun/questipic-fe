@@ -5,7 +5,6 @@ import { COLORS } from '../constants/theme';
 import { QUESTS } from '../api/mockData';
 import { useUser } from '../context/UserContext';
 import Header from '../components/Header';
-import FilterStrip from '../components/FilterStrip';
 import SectionHeader from '../components/SectionHeader';
 import QuestCard from '../components/QuestCard';
 import BottomNav from '../components/BottomNav';
@@ -29,7 +28,6 @@ export default function FeedScreen() {
     <SafeAreaView style={styles.safe} edges={['top']}>
       <View style={styles.container}>
         {user && <Header player={user} />}
-        <FilterStrip selected={filter} onSelect={setFilter} />
 
         <View style={{ flex: 1, position: 'relative' }}>
           <ScrollView

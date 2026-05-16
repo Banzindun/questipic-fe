@@ -4,7 +4,7 @@ import { COLORS } from '../constants/theme';
 
 interface Props {
   label: string;
-  sub: string;
+  sub?: string;
   accent?: string;
   topGap?: boolean;
 }
@@ -15,7 +15,7 @@ export default function SectionHeader({ label, sub, accent = COLORS.accent, topG
       <View style={[styles.dot, { backgroundColor: accent }]} />
       <Text style={styles.label}>{label}</Text>
       <View style={styles.line} />
-      <Text style={styles.sub}>{sub}</Text>
+      {sub && <Text style={styles.sub}>{sub}</Text>}
     </View>
   );
 }

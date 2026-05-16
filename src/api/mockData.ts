@@ -1,4 +1,6 @@
-import { Quest, Player } from '../constants/types';
+import { Quest } from '../constants/types';
+// @ts-ignore — file added by user; alias resolves via tsconfig @assets → assets/
+import sampleImage from '@assets/sample.png';
 
 export const QUESTS: Quest[] = [
   {
@@ -18,6 +20,7 @@ export const QUESTS: Quest[] = [
     lives: null,
     evalMode: 'AI',
     tag: 'HOT',
+    image: sampleImage,
   },
   {
     id: 'q2',
@@ -38,6 +41,7 @@ export const QUESTS: Quest[] = [
     maxLives: 3,
     evalMode: 'SOCIAL',
     tag: 'IN-PROGRESS',
+    image: sampleImage,
   },
   {
     id: 'q3',
@@ -57,6 +61,7 @@ export const QUESTS: Quest[] = [
     evalMode: 'SOCIAL',
     tag: 'CUSTOM',
     host: 'You + 5 friends',
+    image: sampleImage,
   },
   {
     id: 'q4',
@@ -75,6 +80,7 @@ export const QUESTS: Quest[] = [
     lives: null,
     evalMode: 'AI',
     tag: 'NEW',
+    image: sampleImage,
   },
   {
     id: 'q5',
@@ -96,6 +102,7 @@ export const QUESTS: Quest[] = [
     evalMode: 'AI',
     tag: 'IN-PROGRESS',
     host: 'Family group',
+    image: sampleImage,
   },
   {
     id: 'q6',
@@ -114,18 +121,9 @@ export const QUESTS: Quest[] = [
     lives: null,
     evalMode: 'AI',
     tag: 'ENDING SOON',
+    image: sampleImage,
   },
 ];
-
-export const PLAYER: Player = {
-  name: 'Eliška',
-  level: 7,
-  xp: 0.62,
-  qcoins: 1284,
-  avatar: 210,
-  unread: 3,
-  fame: 12,
-};
 
 export const fmt = (n: number): string =>
   n >= 1000

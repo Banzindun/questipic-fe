@@ -20,7 +20,6 @@ export default function FeedScreen() {
   const offers = QUESTS.filter((q) => !q.joined);
   const active = QUESTS.filter((q) => q.joined);
   const dailyOffers = offers.slice(0, 3);
-  const moreToExplore = offers.slice(3);
 
   const scrollToActive = () => {
     scrollRef.current?.scrollTo({ y: activeY.current, animated: true });
@@ -40,10 +39,7 @@ export default function FeedScreen() {
             showsVerticalScrollIndicator={false}
           >
             {/* Daily Offers */}
-            <SectionHeader
-              label="DAILY OFFERS"
-              sub={`${dailyOffers.length} new quests today`}
-            />
+            <SectionHeader label="DAILY OFFERS" />
             {dailyOffers.map((q) => (
               <QuestCard key={q.id} quest={q} />
             ))}
@@ -66,21 +62,7 @@ export default function FeedScreen() {
               </View>
             )}
 
-            {/* More to Explore */}
-            {moreToExplore.length > 0 && (
-              <>
-                <SectionHeader
-                  label="MORE TO EXPLORE"
-                  sub={`${moreToExplore.length} quests`}
-                  topGap
-                />
-                {moreToExplore.map((q) => (
-                  <QuestCard key={q.id} quest={q} />
-                ))}
-              </>
-            )}
-
-            <Text style={styles.endMark}>— END —</Text>
+            <Text style={styles.endMark}>——</Text>
           </ScrollView>
 
           {/* Floating pill */}

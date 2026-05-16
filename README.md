@@ -79,6 +79,12 @@ eas submit --platform android   # uploads AAB to Google Play
 eas submit --platform ios       # uploads IPA to App Store Connect
 ```
 
+### Running in browser
+
+``` bash
+npx expo start --web --port 8082
+```
+
 ### Notes
 
 - Production builds use `.env.production` — `API_URL` points to the live backend.

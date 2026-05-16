@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../constants/theme';
-import { Quest, Player, User } from '../constants/types';
+import { Quest, User } from '../constants/types';
 
 interface LoginResponse {
   result: { type: 'LoginDto'; userToken: string };
@@ -33,7 +33,6 @@ const api = {
     }),
   getMe: () => request<User>('/user'),
   getQuests: () => request<Quest[]>('/quests'),
-  getPlayer: () => request<Player>('/player'),
   joinQuest: (questId: string) =>
     request<{ success: boolean }>('/quests/join', {
       method: 'POST',

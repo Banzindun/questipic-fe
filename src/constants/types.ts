@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native';
+
 export interface Quest {
   id: string;
   kind: 'competitive' | 'custom';
@@ -18,16 +20,7 @@ export interface Quest {
   evalMode: 'AI' | 'SOCIAL';
   tag: string;
   host?: string;
-}
-
-export interface Player {
-  name: string;
-  level: number;
-  xp: number;
-  qcoins: number;
-  avatar: number;
-  unread: number;
-  fame: number;
+  image?: ImageSourcePropType;
 }
 
 export interface User {

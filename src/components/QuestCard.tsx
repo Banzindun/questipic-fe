@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS } from '../constants/theme';
 import { Quest } from '../constants/types';
@@ -47,17 +47,24 @@ export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }:
     <View style={styles.card}>
       {/* Hero area with gradient background */}
       <View style={styles.hero}>
-        {/* Colored gradient placeholder for scene art */}
-        <LinearGradient
-          colors={[
-            `hsl(${q.heroHue}, 55%, 28%)`,
-            `hsl(${q.heroHue2}, 55%, 42%)`,
-            `hsl(${(q.heroHue + 20) % 360}, 55%, 42%)`,
-          ]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFill}
-        />
+        {/* Scene image */}
+        {q.image && (
+          <Image source={q.image} style={StyleSheet.absoluteFill} resizeMode="cover" />
+        )}
+
+        {/* Colored gradient — fallback when no image */}
+        {!q.image && (
+          <LinearGradient
+            colors={[
+              `hsl(${q.heroHue}, 55%, 28%)`,
+              `hsl(${q.heroHue2}, 55%, 42%)`,
+              `hsl(${(q.heroHue + 20) % 360}, 55%, 42%)`,
+            ]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+          />
+        )}
 
         {/* Cinematic bottom gradient */}
         <LinearGradient

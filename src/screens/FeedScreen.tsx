@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, ScrollView, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { COLORS } from '../constants/theme';
 import api from '../api/client';
 import { Quest } from '../constants/types';
@@ -10,8 +12,12 @@ import SectionHeader from '../components/SectionHeader';
 import QuestCard from '../components/QuestCard';
 import BottomNav from '../components/BottomNav';
 import ActiveQuestsPill from '../components/ActiveQuestsPill';
+import { RootStackParamList } from '../navigation/AppNavigator';
+
+type FeedNav = NativeStackNavigationProp<RootStackParamList, 'Feed'>;
 
 export default function FeedScreen() {
+  const navigation = useNavigation<FeedNav>();
   const { user } = useUser();
   const [filter, setFilter] = useState(0);
   const [quests, setQuests] = useState<Quest[]>([]);
@@ -49,7 +55,7 @@ export default function FeedScreen() {
             {/* Daily Offers */}
             <SectionHeader label="DAILY OFFERS" />
             {dailyOffers.map((q) => (
-              <QuestCard key={q.id} quest={q} />
+              <QuestCard key={q.id} quest={q} onPress={() => navigation.navigate('QuestDetail', { questId: q.id })} />
             ))}
 
             {/* Active Quests */}
@@ -65,7 +71,7 @@ export default function FeedScreen() {
                   topGap
                 />
                 {active.map((q) => (
-                  <QuestCard key={q.id} quest={q} />
+                  <QuestCard key={q.id} quest={q} onPress={() => navigation.navigate('QuestDetail', { questId: q.id })} />
                 ))}
               </View>
             )}

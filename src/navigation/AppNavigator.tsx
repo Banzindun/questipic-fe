@@ -7,11 +7,11 @@ import { AuthProvider, useAuth } from '../context/AuthContext';
 import { UserProvider } from '../context/UserContext';
 import FeedScreen from '../screens/FeedScreen';
 import LoginScreen from '../screens/LoginScreen';
+import QuestDetailScreen from '../screens/QuestDetailScreen';
 
 export type RootStackParamList = {
   Feed: undefined;
-  // Future screens:
-  // QuestDetail: { questId: string };
+  QuestDetail: { questId: string };
   // Chapter: { questId: string; chapter: number };
   // Shop: undefined;
   // Profile: undefined;
@@ -44,6 +44,7 @@ function Navigator() {
         }}
       >
         <Stack.Screen name="Feed" component={FeedScreen} />
+        <Stack.Screen name="QuestDetail" component={QuestDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

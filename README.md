@@ -57,7 +57,7 @@ This creates `eas.json` with build profiles.
 $env:NODE_ENV="production"; npx expo run:android
 ```
 
-** Local build for Adnroid **
+** Local build for Android **
 
 ```
 # 1. Generate the native android/ folder

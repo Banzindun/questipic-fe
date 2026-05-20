@@ -52,12 +52,28 @@ This creates `eas.json` with build profiles.
 ### Android
 
 **Build APK (sideload / testing):**
+
 ```bash
-npm run start:prod   # verify production API works first
-eas build --platform android --profile preview
+$env:NODE_ENV="production"; npx expo run:android
+```
+
+** Local build for Adnroid **
+
+```
+# 1. Generate the native android/ folder
+npx expo prebuild --platform android
+
+# 2. Build the APK with Gradle
+$env:NODE_ENV="production"  # set before Gradle
+cd android
+.\gradlew.bat assembleRelease    # release APK
+# or
+.\gradlew.bat assembleDebug      # debug APK
+
 ```
 
 **Build AAB (Google Play Store):**
+
 ```bash
 eas build --platform android --profile production
 ```
@@ -65,6 +81,7 @@ eas build --platform android --profile production
 ### iOS
 
 **Build for TestFlight / App Store:**
+
 ```bash
 eas build --platform ios --profile production
 ```
@@ -80,7 +97,7 @@ eas submit --platform ios       # uploads IPA to App Store Connect
 
 ### Running in browser
 
-``` bash
+```bash
 npx expo start --web --port 8082
 ```
 

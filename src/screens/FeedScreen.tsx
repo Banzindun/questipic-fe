@@ -27,8 +27,11 @@ export default function FeedScreen() {
   useEffect(() => {
     api.getQuests().then((data) => {
       console.log('[getQuests] raw response:', JSON.stringify(data));
-      const list = Array.isArray(data) ? data : (data as { result?: Quest[]; quests?: Quest[]; data?: Quest[] }).result ?? (data as { quests?: Quest[] }).quests ?? (data as { data?: Quest[] }).data ?? [];
-      setQuests(list);
+      const wrapped = data as { result?: unknown; quests?: unknown; data?: unknown } | null | undefined;
+      const candidate = Array.isArray(data)
+        ? data
+        : wrapped?.result ?? wrapped?.quests ?? wrapped?.data;
+      setQuests(Array.isArray(candidate) ? (candidate as Quest[]) : []);
     }).catch((e) => console.error('[getQuests] error:', e));
   }, []);
 

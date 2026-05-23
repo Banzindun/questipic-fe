@@ -7,6 +7,19 @@ interface LoginResponse {
   involved: { user: { name: string; [key: string]: unknown } };
 }
 
+export class ApiError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
+let unauthorizedHandler: (() => void) | null = null;
+
+export function setUnauthorizedHandler(handler: (() => void) | null) {
+  unauthorizedHandler = handler;
+}
+
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = await AsyncStorage.getItem('auth_token');
   const url = `${API_URL}${endpoint}`;
@@ -20,7 +33,10 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   const response = await fetch(url, { ...options, headers });
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`API ${response.status}: ${body}`);
+    if (response.status === 401 && unauthorizedHandler) {
+      unauthorizedHandler();
+    }
+    throw new ApiError(response.status, `API ${response.status}: ${body}`);
   }
   return response.json();
 }

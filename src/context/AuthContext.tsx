@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setUnauthorizedHandler } from '../api/client';
 
 const TOKEN_KEY = 'auth_token';
 const NAME_KEY = 'auth_name';
@@ -39,6 +40,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await AsyncStorage.multiRemove([TOKEN_KEY, NAME_KEY]);
     setState({ token: null, userName: null, isLoading: false });
   }
+
+  const signOutRef = useRef(signOut);
+  signOutRef.current = signOut;
+
+  useEffect(() => {
+    setUnauthorizedHandler(() => {
+      signOutRef.current();
+    });
+    return () => setUnauthorizedHandler(null);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ ...state, signIn, signOut }}>

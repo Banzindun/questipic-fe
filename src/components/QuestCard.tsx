@@ -44,8 +44,6 @@ function QuestTag({ tag, accent }: { tag: string; accent: string }) {
 }
 
 export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }: Props) {
-  const isCustom = q.kind === 'custom';
-
   return (
     <View style={styles.card}>
       {/* Hero area with gradient background */}
@@ -105,9 +103,6 @@ export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }:
                 <Text style={styles.statText}>{q.timeLeft}</Text>
               </View>
             )}
-            <Text style={styles.statText}>
-              {q.evalMode === 'AI' ? 'AI · JUDGED' : 'SOCIAL · VOTED'}
-            </Text>
           </View>
         </View>
       </View>
@@ -150,13 +145,11 @@ export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }:
                     <Text style={styles.rewardLabel}>MAX REWARD</Text>
                   </View>
                 </View>
-              ) : isCustom && q.host ? (
-                <Text style={styles.hostText}>HOSTED BY {q.host.toUpperCase()}</Text>
               ) : null}
             </View>
             <TouchableOpacity style={[styles.button, { backgroundColor: accent }]} onPress={onPress}>
               <Text style={styles.buttonText}>
-                {isCustom ? 'ENTER LOBBY →' : 'JOIN QUEST →'}
+                {'JOIN QUEST →'}
               </Text>
             </TouchableOpacity>
           </>

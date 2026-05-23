@@ -127,7 +127,6 @@ export interface QuestDetail {
 
 export interface Quest {
   id: string;
-  kind: 'competitive' | 'custom';
   theme: string;
   title: string;
   hook: string;
@@ -140,9 +139,7 @@ export interface Quest {
   joined: boolean;
   lives: number | null;
   maxLives?: number;
-  evalMode: 'AI' | 'SOCIAL';
   tag: string;
-  host?: string;
   image?: ImageSourcePropType;
 }
 

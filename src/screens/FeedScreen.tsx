@@ -39,6 +39,15 @@ export default function FeedScreen() {
   const active = quests.filter((q) => q.joined);
   const dailyOffers = offers.slice(0, 3);
 
+  const handleJoin = (questId: string) => {
+    api.joinQuest(questId)
+      .then(() => {
+        setQuests((prev) => prev.map((q) => (q.id === questId ? { ...q, joined: true } : q)));
+        navigation.navigate('QuestDetail', { questId });
+      })
+      .catch((e) => console.error('[joinQuest] error:', e));
+  };
+
   const scrollToActive = () => {
     scrollRef.current?.scrollTo({ y: activeY.current, animated: true });
   };
@@ -58,7 +67,12 @@ export default function FeedScreen() {
             {/* Daily Offers */}
             <SectionHeader label="DAILY OFFERS" />
             {dailyOffers.map((q) => (
-              <QuestCard key={q.id} quest={q} onPress={() => navigation.navigate('QuestDetail', { questId: q.id })} />
+              <QuestCard
+                key={q.id}
+                quest={q}
+                onPress={() => navigation.navigate('QuestDetail', { questId: q.id })}
+                onJoin={() => handleJoin(q.id)}
+              />
             ))}
 
             {/* Active Quests */}
@@ -74,7 +88,12 @@ export default function FeedScreen() {
                   topGap
                 />
                 {active.map((q) => (
-                  <QuestCard key={q.id} quest={q} onPress={() => navigation.navigate('QuestDetail', { questId: q.id })} />
+                  <QuestCard
+                key={q.id}
+                quest={q}
+                onPress={() => navigation.navigate('QuestDetail', { questId: q.id })}
+                onJoin={() => handleJoin(q.id)}
+              />
                 ))}
               </View>
             )}

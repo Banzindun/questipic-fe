@@ -11,6 +11,7 @@ interface Props {
   quest: Quest;
   accent?: string;
   onPress?: () => void;
+  onJoin?: () => void;
 }
 
 const HERO_HUE = 210;
@@ -43,7 +44,7 @@ function QuestTag({ tag, accent }: { tag: string; accent: string }) {
   );
 }
 
-export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }: Props) {
+export default function QuestCard({ quest: q, accent = COLORS.accent, onPress, onJoin }: Props) {
   return (
     <View style={styles.card}>
       {/* Hero area with gradient background */}
@@ -147,7 +148,7 @@ export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }:
                 </View>
               ) : null}
             </View>
-            <TouchableOpacity style={[styles.button, { backgroundColor: accent }]} onPress={onPress}>
+            <TouchableOpacity style={[styles.button, { backgroundColor: accent }]} onPress={onJoin ?? onPress}>
               <Text style={styles.buttonText}>
                 {'JOIN QUEST →'}
               </Text>

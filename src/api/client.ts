@@ -50,7 +50,7 @@ const api = {
   getMe: () => request<User>('/user'),
   getQuests: () => request<Quest[]>('/quests'),
   joinQuest: (questId: string) =>
-    request<{ success: boolean }>('/quests/join', {
+    request<{ success: boolean }>('/join-quest', {
       method: 'POST',
       body: JSON.stringify({ questId }),
     }),

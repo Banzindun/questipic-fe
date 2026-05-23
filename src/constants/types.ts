@@ -13,8 +13,6 @@ export interface QuestDetailMeta {
   lives: number;
   maxLives: number;
   playersRemaining: number;
-  heroHue: number;
-  heroHue2: number;
   evalMode: 'AI' | 'SOCIAL';
   qcoinsEarned: number;
   status: 'active' | 'failed';
@@ -133,8 +131,6 @@ export interface Quest {
   theme: string;
   title: string;
   hook: string;
-  heroHue: number;
-  heroHue2: number;
   players: number;
   timeLeft: string | null;
   size: number;

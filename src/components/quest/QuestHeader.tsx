@@ -17,6 +17,9 @@ const C = {
   red: '#FF4D4D',
 } as const;
 
+const HERO_HUE = 210;
+const HERO_HUE_2 = 260;
+
 interface Props {
   quest: QuestDetailMeta;
   onBack: () => void;
@@ -32,8 +35,8 @@ export default function QuestHeader({ quest, onBack }: Props) {
       {/* Background mood gradient */}
       <LinearGradient
         colors={[
-          `hsl(${quest.heroHue}, 40%, 15%)`,
-          `hsl(${quest.heroHue2}, 40%, 10%)`,
+          `hsl(${HERO_HUE}, 40%, 15%)`,
+          `hsl(${HERO_HUE_2}, 40%, 10%)`,
         ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}

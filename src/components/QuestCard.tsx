@@ -13,6 +13,9 @@ interface Props {
   onPress?: () => void;
 }
 
+const HERO_HUE = 210;
+const HERO_HUE_2 = 260;
+
 // Tag badge — strong (HOT/NEW/ENDING SOON) or quiet (CUSTOM/IN-PROGRESS)
 function QuestTag({ tag, accent }: { tag: string; accent: string }) {
   const STRONG: Record<string, string> = {
@@ -56,9 +59,9 @@ export default function QuestCard({ quest: q, accent = COLORS.accent, onPress }:
         {!q.image && (
           <LinearGradient
             colors={[
-              `hsl(${q.heroHue}, 55%, 28%)`,
-              `hsl(${q.heroHue2}, 55%, 42%)`,
-              `hsl(${(q.heroHue + 20) % 360}, 55%, 42%)`,
+              `hsl(${HERO_HUE}, 55%, 28%)`,
+              `hsl(${HERO_HUE_2}, 55%, 42%)`,
+              `hsl(${(HERO_HUE + 20) % 360}, 55%, 42%)`,
             ]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}

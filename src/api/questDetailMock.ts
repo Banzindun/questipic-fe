@@ -12,8 +12,6 @@ const QUEST_DETAIL_MOCK: QuestDetail = {
     lives: 2,
     maxLives: 3,
     playersRemaining: 1209,
-    heroHue: 210,
-    heroHue2: 260,
     evalMode: 'SOCIAL',
     qcoinsEarned: 280,
     status: 'active',

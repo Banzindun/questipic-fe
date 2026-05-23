@@ -53,6 +53,7 @@ export default function QuestDetailScreen({ route, navigation }: Props) {
   useEffect(() => {
     api.getQuestDetail(questId)
       .then((data) => {
+        console.log('[getQuestDetail] response:', JSON.stringify(data));
         setDetail(data);
         if (data.active?.kind === 'photo') {
           setPhotoState(data.active.state);
